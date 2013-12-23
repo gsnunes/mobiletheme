@@ -12,7 +12,7 @@ header h1 {font-size: 45px; font-style: italic; margin-bottom: 4px;}
 
 
 #highlight {height: 439px; margin-bottom: 35px;}
-#highlight .opacity {height: 439px; opacity: 0.6; behavior: url(./js/PIE-1.0.0/PIE.htc); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#60FFFFFF, endColorstr=#60FFFFFF)";}
+#highlight .opacity {height: 439px; opacity: 0.6; behavior: url(@pieCssPath); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#60FFFFFF, endColorstr=#60FFFFFF)";}
 #highlight .container {margin-top: -439px; position:relative}
 
 .description {margin-top:40px}
@@ -29,7 +29,7 @@ header h1 {font-size: 45px; font-style: italic; margin-bottom: 4px;}
      -ms-border-radius: @radius;
      -o-border-radius: @radius;
      border-radius: @radius;
-     behavior: url(./js/PIE-1.0.0/PIE.htc);
+     behavior: url(@pieCssPath);
 }
 
 .circle (@radius: 136px) {

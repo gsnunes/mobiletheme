@@ -17,6 +17,12 @@
     }
   ?>
 
+
+  <?php include roots_template_path(); ?>
+
+
+  <?php
+  /*
   <div class="wrap container" role="document">
     <div class="content row">
       <main class="main <?php echo roots_main_class(); ?>" role="main">
@@ -29,6 +35,8 @@
       <?php endif; ?>
     </div><!-- /.content -->
   </div><!-- /.wrap -->
+  */
+  ?>
 
   <?php get_template_part('templates/footer'); ?>
 

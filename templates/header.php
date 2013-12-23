@@ -1,3 +1,23 @@
+<header class="container">
+  <div class="row">
+    <div class="span8">
+      <h1><?php bloginfo('name'); ?></h1>
+      <p>Subtitle morbi in sem quis lorem ipsum dolor</p>
+    </div>
+    <div class="span4">
+      <ul class="sprite-icons colored">
+        <li><a class="twitter" href="javascript:;"></a></li>
+        <li><a class="vimeo" href="javascript:;"></a></li>
+        <li><a class="flickr" href="javascript:;"></a></li>
+        <li><a class="facebook" href="javascript:;"></a></li>
+        <li><a class="skype" href="javascript:;"></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<?php
+/*
 <header class="banner container" role="banner">
   <div class="row">
     <div class="col-lg-12">
@@ -12,3 +32,5 @@
     </div>
   </div>
 </header>
+*/
+?>
