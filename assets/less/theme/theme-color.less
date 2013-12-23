@@ -1,0 +1,45 @@
+h1 {color: @baseColor;}
+h3 {color: @baseColor;}
+h4 {color: @baseColor;}
+
+
+.sprite-icons.colored li a {background-color: desaturate(lighten(@baseColor, 15%), 15%);}
+
+
+#highlight .opacity {
+	background-image: url(../img/texture.png), linear-gradient(bottom, saturate(@baseColor, 20%) 0%, @stopColor 100%);
+	background-image: url(../img/texture.png), -o-linear-gradient(bottom, saturate(@baseColor, 20%) 0%, @stopColor 100%);
+	background-image: url(../img/texture.png), -moz-linear-gradient(bottom, saturate(@baseColor, 20%) 0%, @stopColor 100%);
+	background-image: url(../img/texture.png), -webkit-linear-gradient(bottom, saturate(@baseColor, 20%) 0%, @stopColor 100%);
+	background-image: url(../img/texture.png), -ms-linear-gradient(bottom, saturate(@baseColor, 20%) 0%, @stopColor 100%);
+
+	background-image: url(../img/texture.png), -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, saturate(@baseColor, 20%)),
+		color-stop(1, @stopColor)
+	);
+
+	-pie-background: url(./img/texture.png), linear-gradient(bottom, saturate(@baseColor, 20%) 0%, @stopColor 100%);
+}
+
+
+.circle p {color: @baseColor;}
+.half-circle {background: desaturate(lighten(@baseColor, 15%), 15%);}
+
+
+textarea,
+input[type="text"] {
+	border-color: lighten(@baseColor, 35%);
+	background-color: @inputColor;
+	color: @baseColor;
+}
+
+
+footer {background-color: desaturate(@baseColor, 15%);}
+
+
+.btn {
+	.buttonBackground(@baseColor, darken(@baseColor, 15%));
+}

@@ -2,7 +2,19 @@
  * Roots 6.5.1
  */
 
+@import url("http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&.css");
+
 @import "bootstrap/bootstrap.less";
+@import "bootstrap/responsive.less";
+
+@baseColor: #bd1f43;
+@stopColor: #ffe3a7;
+@inputColor: #f8d4c5;
+
+@import "theme/theme-common.less";
+@import "theme/theme-color.less";
+
+
 
 /* ==========================================================================
    Base
@@ -76,15 +88,3 @@ body { }
 .alignleft { float: left; }
 .alignright { float: right; }
 figure.alignnone { margin-left: 0; margin-right: 0; }
-
-
-
-/* ==========================================================================
-   Media Queries
-   ========================================================================== */
-
-@media (min-width: @screen-sm-min) { }
-
-@media (min-width: @screen-md-min) { }
-
-@media (min-width: @screen-lg-min) { }
