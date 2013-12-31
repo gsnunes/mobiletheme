@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span8">
       <h1><?php bloginfo('name'); ?></h1>
-      <p>Subtitle morbi in sem quis lorem ipsum dolor</p>
+      <p><?php bloginfo('description'); ?></p>
     </div>
     <div class="span4">
       <ul class="sprite-icons colored">

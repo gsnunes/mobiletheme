@@ -24,7 +24,7 @@
 			<div class="span3">
 				<h5>Contact</h5>
 
-				<form>
+				<form id="contact-form" action="<?php echo admin_url('admin-ajax.php'); ?>">
 					<label>Name</label>
 					<input type="text" class="input-large" name="name">
 					
