@@ -35,6 +35,8 @@
 					<textarea rows="3" class="input-large" name="message"></textarea>
 
 					<button type="submit" class="btn btn-small">SUBMIT</button>
+
+					<div class="response"></div>
 				</form>
 			</div>
 		</div>

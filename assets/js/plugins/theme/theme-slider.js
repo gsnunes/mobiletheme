@@ -4,7 +4,7 @@ $(function () {
 		images = $('.slider-images img');
 
 
-	function setLayoutDevice (elem) {
+	function setLayoutDevice(elem) {
 		var layout = elem.attr('data-layout'),
 			device = elem.attr('data-device');
 
@@ -30,7 +30,7 @@ $(function () {
 	$('.previous').on('click', function () { changeImage(-1); });
 
 
-	function changeImage (direction) {
+	function changeImage(direction) {
 		var index = $('.slider-images li:visible').index(),
 			imageIndex = index + direction,
 			image;

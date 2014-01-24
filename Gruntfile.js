@@ -7,9 +7,10 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       },
       all: [
-        'Gruntfile.js',
+        //'Gruntfile.js',
         'assets/js/*.js',
-        '!assets/js/scripts.min.js'
+        '!assets/js/scripts.min.js',
+        'assets/js/plugins/theme/*.js'
       ]
     },
     less: {
@@ -34,6 +35,7 @@ module.exports = function(grunt) {
         files: {
           'assets/js/scripts.min.js': [
             'assets/js/plugins/bootstrap/bootstrap.js',
+            'assets/js/plugins/theme/*.js',
             'assets/js/plugins/*.js',
             'assets/js/_*.js'
           ]
@@ -103,6 +105,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'clean',
     'less',
+    'jshint',
     'uglify',
     'version'
   ]);
