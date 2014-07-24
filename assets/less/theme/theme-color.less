@@ -32,9 +32,14 @@ h4 {color: @baseColor;}
 textarea,
 input[type="text"] {
 	border-color: lighten(@baseColor, 35%);
-	background-color: @inputColor;
+	background-color: lighten(spin(@baseColor, 30), 42%);
 	color: @baseColor;
 }
+
+textarea, input[type="text"]::-webkit-input-placeholder {color: @baseColor;}
+textarea, input[type="text"]:-moz-placeholder {color: @baseColor;}
+textarea, input[type="text"]::-moz-placeholder {color: @baseColor;}
+textarea, input[type="text"]:-ms-input-placeholder {color: @baseColor;}
 
 
 footer {background-color: desaturate(@baseColor, 15%);}

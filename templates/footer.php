@@ -12,13 +12,15 @@
 			<div class="span3">
 				<h5>Social Media</h5>
 				<ul class="sprite-icons">
-					<li><a class="twitter" href="javascript:;"></a></li>
-					<li><a class="vimeo" href="javascript:;"></a></li>
-					<li><a class="flickr" href="javascript:;"></a></li>
-					<li><a class="facebook" href="javascript:;"></a></li>
-					<li><a class="skype" href="javascript:;"></a></li>
-					<li><a class="youtube" href="javascript:;"></a></li>
-					<li><a class="google" href="javascript:;"></a></li>
+					<?php
+						$social_icons_options = get_option("mobiletheme_social_icons");
+
+						foreach ($social_icons_options as $key => $value) {
+							if (!empty($value)) {
+								echo '<li><a class="' . $key . '" href="' . $value . '" target="_blank"></a></li>';
+							}
+						}
+					?>
 				</ul>
 			</div>
 			<div class="span3">
