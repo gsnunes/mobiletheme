@@ -6655,71 +6655,71 @@ footer {
   margin: 24px 0 0 87px;
 }
 h1 {
-  color: #548675;
+  color: #65a9e2;
 }
 h3 {
-  color: #548675;
+  color: #65a9e2;
 }
 h4 {
-  color: #548675;
+  color: #65a9e2;
 }
 .sprite-icons.colored li a {
-  background-color: #8b9c96;
+  background-color: #adcce6;
 }
 #highlight .opacity {
-  background-image: url(../img/texture.png), linear-gradient(bottom,#3e9c7c 0%,#ffe3a7 100%);
-  background-image: url(../img/texture.png), -o-linear-gradient(bottom,#3e9c7c 0%,#ffe3a7 100%);
-  background-image: url(../img/texture.png), -moz-linear-gradient(bottom,#3e9c7c 0%,#ffe3a7 100%);
-  background-image: url(../img/texture.png), -webkit-linear-gradient(bottom,#3e9c7c 0%,#ffe3a7 100%);
-  background-image: url(../img/texture.png), -ms-linear-gradient(bottom,#3e9c7c 0%,#ffe3a7 100%);
-  background-image: url(../img/texture.png), -webkit-gradient(linear,left bottom,left top,color-stop(0,#3e9c7c),color-stop(1,#ffe3a7));
-  -pie-background: url(./img/texture.png), linear-gradient(bottom,#3e9c7c 0%,#ffe3a7 100%);
+  background-image: url(../img/texture.png), linear-gradient(bottom,#53abf4 0%,#ffe3a7 100%);
+  background-image: url(../img/texture.png), -o-linear-gradient(bottom,#53abf4 0%,#ffe3a7 100%);
+  background-image: url(../img/texture.png), -moz-linear-gradient(bottom,#53abf4 0%,#ffe3a7 100%);
+  background-image: url(../img/texture.png), -webkit-linear-gradient(bottom,#53abf4 0%,#ffe3a7 100%);
+  background-image: url(../img/texture.png), -ms-linear-gradient(bottom,#53abf4 0%,#ffe3a7 100%);
+  background-image: url(../img/texture.png), -webkit-gradient(linear,left bottom,left top,color-stop(0,#53abf4),color-stop(1,#ffe3a7));
+  -pie-background: url(./img/texture.png), linear-gradient(bottom,#53abf4 0%,#ffe3a7 100%);
 }
 .circle p {
-  color: #548675;
+  color: #65a9e2;
 }
 .half-circle {
-  background: #8b9c96;
+  background: #adcce6;
 }
 textarea,
 input[type="text"] {
-  border-color: #b9d3ca;
-  background-color: #cfdee1;
-  color: #548675;
+  border-color: #fbfdfe;
+  background-color: #ffffff;
+  color: #65a9e2;
 }
 textarea,
 input[type="text"]::-webkit-input-placeholder {
-  color: #548675;
+  color: #65a9e2;
 }
 textarea,
 input[type="text"]:-moz-placeholder {
-  color: #548675;
+  color: #65a9e2;
 }
 textarea,
 input[type="text"]::-moz-placeholder {
-  color: #548675;
+  color: #65a9e2;
 }
 textarea,
 input[type="text"]:-ms-input-placeholder {
-  color: #548675;
+  color: #65a9e2;
 }
 footer {
-  background-color: #647670;
+  background-color: #73a8d4;
 }
 .btn {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-  background-color: #487365;
-  background-image: -moz-linear-gradient(top,#548675,#37574c);
-  background-image: -webkit-gradient(linear,0 0,0 100%,from(#548675),to(#37574c));
-  background-image: -webkit-linear-gradient(top,#548675,#37574c);
-  background-image: -o-linear-gradient(top,#548675,#37574c);
-  background-image: linear-gradient(to bottom,#548675,#37574c);
+  background-color: #4c9bdc;
+  background-image: -moz-linear-gradient(top,#65a9e2,#2885d3);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#65a9e2),to(#2885d3));
+  background-image: -webkit-linear-gradient(top,#65a9e2,#2885d3);
+  background-image: -o-linear-gradient(top,#65a9e2,#2885d3);
+  background-image: linear-gradient(to bottom,#65a9e2,#2885d3);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff548675', endColorstr='#ff36564b', GradientType=0);
-  border-color: #37574c #37574c #192823;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff65a9e2', endColorstr='#ff2784d2', GradientType=0);
+  border-color: #2885d3 #2885d3 #1c5c92;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  *background-color: #37574c;
+  *background-color: #2885d3;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn:hover,
@@ -6729,12 +6729,12 @@ footer {
 .btn.disabled,
 .btn[disabled] {
   color: #fff;
-  background-color: #37574c;
-  *background-color: #2d473e;
+  background-color: #2885d3;
+  *background-color: #2477bd;
 }
 .btn:active,
 .btn.active {
-  background-color: #233831 \9;
+  background-color: #206aa8 \9;
 }
 .gallery-row {
   padding: 15px 0;

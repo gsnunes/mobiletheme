@@ -121,8 +121,7 @@ function theme_front_page_settings () {
 		$less = new lessc;
 
 		$less->setVariables(array(
-			"baseColor" => $color_options,
-			"inputColor" => $color_options
+			"baseColor" => $color_options
 		));
 
 		$less->compileFile(get_template_directory() . "/assets/less/app.less", get_template_directory() . "/assets/css/main.min.css");
