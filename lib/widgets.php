@@ -24,8 +24,158 @@ function roots_widgets_init() {
 
   // Widgets
   register_widget('Roots_Vcard_Widget');
+  register_widget('Mobiletheme_Contact_Widget');
+  register_widget('Mobiletheme_Social_Widget');
 }
+
 add_action('widgets_init', 'roots_widgets_init');
+
+
+
+class Mobiletheme_Social_Widget extends WP_Widget {
+
+  /**
+  * Sets up the widgets name etc
+  */
+  public function __construct() {
+    $widget_ops = array('classname' => 'widget_mobiletheme_social', 'description' => __('Use this widget to add a social icons', 'roots'));
+
+    $this->WP_Widget('widget_mobiletheme_social', __('Mobiletheme: social', 'roots'), $widget_ops);
+    $this->alt_option_name = 'widget_mobiletheme_social';
+  }
+
+  /**
+  * Outputs the content of the widget
+  *
+  * @param array $args
+  * @param array $instance
+  */
+  public function widget( $args, $instance ) {
+    ?>
+    
+    <div class="widget">
+        <h5>Social Media</h5>
+        <ul class="sprite-icons">
+          <?php
+            $social_icons_options = get_option("mobiletheme_social_icons");
+
+            foreach ($social_icons_options as $key => $value) {
+              if (!empty($value)) {
+                echo '<li><a class="' . $key . '" href="' . $value . '" target="_blank"></a></li>';
+              }
+            }
+          ?>
+        </ul>
+      </div>
+
+    <?php
+  }
+
+  /**
+  * Outputs the options form on admin
+  *
+  * @param array $instance The widget options
+  */
+  public function form( $instance ) {
+    // outputs the options form on admin
+  }
+
+  /**
+  * Processing widget options on save
+  *
+  * @param array $new_instance The new options
+  * @param array $old_instance The previous options
+  */
+  public function update( $new_instance, $old_instance ) {
+    // processes widget options to be saved
+  }
+  
+}
+
+
+
+
+class Mobiletheme_Contact_Widget extends WP_Widget {
+
+  /**
+  * Sets up the widgets name etc
+  */
+  public function __construct() {
+    $widget_ops = array('classname' => 'mobiletheme-contact', 'description' => __('Use this widget to add a contact form', 'roots'));
+    $this->WP_Widget('mobiletheme-contact', __('Contact form', 'roots'), $widget_ops);
+  }
+
+  /**
+  * Outputs the content of the widget
+  *
+  * @param array $args
+  * @param array $instance
+  */
+  public function widget( $args, $instance ) {
+    $email = apply_filters( 'widget_email', $instance['email'] );
+    echo $email;
+    ?>
+    <div class="widget">
+        <h5>Contact</h5>
+
+        <form id="contact-form" action="<?php echo admin_url('admin-ajax.php'); ?>">
+          <label>Name</label>
+          <input type="text" class="input-large" name="name">
+          
+          <label>E-mail</label>
+          <input type="text" class="input-large" name="email">
+
+          <label>Message</label>
+          <textarea rows="3" class="input-large" name="message"></textarea>
+
+          <button type="submit" class="btn btn-small">SUBMIT</button>
+
+          <div class="response"></div>
+        </form>
+      </div>
+    <?php
+  }
+
+  /**
+  * Outputs the options form on admin
+  *
+  * @param array $instance The widget options
+  */
+  public function form( $instance ) {
+    // outputs the options form on admin
+    if ( isset( $instance[ 'email' ] ) ) {
+      $email = $instance[ 'email' ];
+    }
+    else {
+      $email = __( 'New email', 'text_domain' );
+    }
+
+    ?>
+    <p>
+      <label for="<?php echo $this->get_field_id( 'email' ); ?>">Contact email:</label>
+      <input class="widefat" id="<?php echo $this->get_field_id( 'email' ); ?>" name="<?php echo $this->get_field_id( 'email' ); ?>" type="text" value="<?php echo esc_attr( $email ); ?>">
+    </p>
+    <?php
+  }
+
+  /**
+  * Processing widget options on save
+  *
+  * @param array $new_instance The new options
+  * @param array $old_instance The previous options
+  */
+  public function update( $new_instance, $old_instance ) {
+    // processes widget options to be saved
+    $instance = array();
+    $instance['email'] = ( ! empty( $new_instance['email'] ) ) ? strip_tags( $new_instance['email'] ) : get_settings('admin_email');
+
+    return $instance;
+  }
+  
+}
+
+
+
 
 /**
  * Example vCard widget
