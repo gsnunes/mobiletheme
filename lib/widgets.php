@@ -95,6 +95,58 @@ class Mobiletheme_Social_Widget extends WP_Widget {
 
 
 
+
+function my_action_callback () {
+  $params = array();
+  parse_str($_POST['data'], $params);
+
+  $name = trim($params['name']);
+  $email = $params['email'];
+  $message = $params['message'];
+
+  $subject = get_bloginfo('name') . ' - Contact';
+  $site_owners_email = $params['contactEmail'];
+
+  $regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+
+
+  if ($name == "") {
+    $error['error'] .= "Please enter your name. <br />";
+  }
+
+  if (!preg_match($regex, $email)) {
+    $error['error'] .= "Please enter a valid email address. <br />";
+  }
+
+  if ($message == "") {
+    $error['error'] .= "Please leave a comment.";
+  }
+
+
+  if (!$error) {
+    $mail = mail($site_owners_email, $subject, $message,
+      "From: ".$name." <".$email.">rn"
+      ."Reply-To: ".$email."rn"
+      ."X-Mailer: PHP/" . phpversion());
+
+    $success['success'] = "We've received your email. We'll be in touch with you as soon as possible!";
+    echo json_encode($success);
+  }
+  else {
+    echo json_encode($error);
+  }
+
+  die();
+}
+
+
+
+
+
+
+
+
+
 class Mobiletheme_Contact_Widget extends WP_Widget {
 
   /**
@@ -103,6 +155,9 @@ class Mobiletheme_Contact_Widget extends WP_Widget {
   public function __construct() {
     $widget_ops = array('classname' => 'mobiletheme-contact', 'description' => __('Use this widget to add a contact form', 'roots'));
     $this->WP_Widget('mobiletheme-contact', __('Contact form', 'roots'), $widget_ops);
+
+    add_action('wp_ajax_nopriv_my_action', 'my_action_callback');
+    add_action('wp_ajax_my_action', 'my_action_callback');
   }
 
   /**
@@ -112,13 +167,13 @@ class Mobiletheme_Contact_Widget extends WP_Widget {
   * @param array $instance
   */
   public function widget( $args, $instance ) {
-    $email = apply_filters( 'widget_email', $instance['email'] );
-    echo $email;
     ?>
     <div class="widget">
         <h5>Contact</h5>
 
         <form id="contact-form" action="<?php echo admin_url('admin-ajax.php'); ?>">
+          <input type="hidden" name="contactEmail" value="<?php echo $instance['email']; ?>" />
+
           <label>Name</label>
           <input type="text" class="input-large" name="name">
           
@@ -147,13 +202,13 @@ class Mobiletheme_Contact_Widget extends WP_Widget {
       $email = $instance[ 'email' ];
     }
     else {
-      $email = __( 'New email', 'text_domain' );
+      $email = get_settings('admin_email');
     }
 
     ?>
     <p>
       <label for="<?php echo $this->get_field_id( 'email' ); ?>">Contact email:</label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'email' ); ?>" name="<?php echo $this->get_field_id( 'email' ); ?>" type="text" value="<?php echo esc_attr( $email ); ?>">
+      <input class="widefat" id="<?php echo $this->get_field_id( 'email' ); ?>" name="<?php echo $this->get_field_name( 'email' ); ?>" type="text" value="<?php echo esc_attr( $email ); ?>">
     </p>
     <?php
   }
@@ -165,7 +220,6 @@ class Mobiletheme_Contact_Widget extends WP_Widget {
   * @param array $old_instance The previous options
   */
   public function update( $new_instance, $old_instance ) {
-    // processes widget options to be saved
     $instance = array();
     $instance['email'] = ( ! empty( $new_instance['email'] ) ) ? strip_tags( $new_instance['email'] ) : get_settings('admin_email');
 
@@ -173,6 +227,11 @@ class Mobiletheme_Contact_Widget extends WP_Widget {
   }
   
 }
+
+
+
+
+
 
 
 

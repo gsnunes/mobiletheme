@@ -6362,6 +6362,7 @@ footer {
 }
 #contact-form .btn {
   margin-bottom: 10px;
+  display: block;
 }
 .iphone .circle {
   height: 89px;

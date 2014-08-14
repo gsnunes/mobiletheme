@@ -13,10 +13,17 @@
 			
 		jQuery('footer .widget').each(function (i, elem) {
 			if (jQuery(this).hasClass('widget_text')) {
-				var div = jQuery('<div class="' + columnClass + '"></div>');
+				var div = jQuery('<div class="' + columnClass + '"></div>'),
+					content = jQuery(this).find('.textwidget'),
+					header = jQuery(this).find('h3');
 
-				div.append('<h5>' + jQuery(this).find('h3').html() + '</h5>');
-				div.append('<p>' + jQuery(this).find('.textwidget').html() + '</p>');
+				if (header.length) {
+					div.append('<h5>' + header.html() + '</h5>');
+				}
+
+				if (content) {
+					div.append('<p>' + content.html() + '</p>');
+				}
 
 				jQuery(this).replaceWith(div);
 			}

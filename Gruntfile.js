@@ -26,7 +26,10 @@ module.exports = function(grunt) {
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
           sourceMap: false,
           sourceMapFilename: 'assets/css/main.min.css.map',
-          sourceMapRootpath: '/app/themes/roots/'
+          sourceMapRootpath: '/app/themes/roots/',
+          modifyVars: {
+            baseColor: '#bd1f43'
+          }
         }
       }
     },
