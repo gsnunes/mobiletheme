@@ -60,6 +60,11 @@
 </div>
 
 <div class="container">
+	<div class="sidebar-primary">
+		<?php dynamic_sidebar('sidebar-primary'); ?>
+	</div>
+
+	<!--
 	<div class="row">
 		<div class="span4">
 			<h4>Subheading</h4>
@@ -92,6 +97,8 @@
 
 	<hr />
 
+	-->
+
 	<form class="form-inline newsletter">
 		<label for="newsletter-email">Signup for our newsletter to get exclusive deals directly to your inbox.</label>
 		<input type="text" class="input-large" placeholder="enter your e-mail address" id="newsletter-email">
@@ -106,3 +113,50 @@
   <?php wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
 <?php endwhile; ?>
 -->
+
+
+<script>
+	jQuery(document).ready(function () {
+		var oldContent = jQuery('.sidebar-primary .widget'),
+			len = oldContent.length,
+			columnClass = 'span' + (len <= 4 ? (12 / len) : 3),
+			newContent = jQuery('<div class="row"></div>'),
+			rows = Math.ceil(len / 4),
+			currentRow = 0,
+			count = 0;
+
+		jQuery('.sidebar-primary').html("");
+			
+		oldContent.each(function (i, elem) {
+			if (currentRow < rows && count === 4) {
+				newContent = jQuery('<div class="row"></div>')
+				currentRow++;
+			}
+
+			if (jQuery(this).hasClass('widget_text')) {
+				var div = jQuery('<div class="' + columnClass + '"></div>'),
+					content = jQuery(this).find('.textwidget'),
+					header = jQuery(this).find('h3');
+
+				if (header.length) {
+					div.append('<h4>' + header.html() + '</h4>');
+				}
+
+				if (content) {
+					div.append('<p>' + content.html() + '</p>');
+				}
+
+				//jQuery(this).replaceWith(div);
+				newContent.append(div);
+				count++;
+			}
+			else {
+				jQuery(this).addClass(columnClass);
+			}
+
+			jQuery('.sidebar-primary').append(newContent);
+		});
+
+		jQuery('.sidebar-primary').append('<hr />');
+	});
+</script>
