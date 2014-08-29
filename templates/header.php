@@ -5,17 +5,7 @@
 			<p><?php bloginfo('description'); ?></p>
 		</div>
 		<div class="span4">
-			<ul class="sprite-icons colored">
-				<?php
-					$social_icons_options = get_option("mobiletheme_social_icons");
-
-					foreach ($social_icons_options as $key => $value) {
-						if (!empty($value)) {
-							echo '<li><a class="' . $key . '" href="' . $value . '" target="_blank"></a></li>';
-						}
-					}
-				?>
-			</ul>
+			<?php dynamic_sidebar('sidebar-header'); ?>
 		</div>
 	</div>
 </header>

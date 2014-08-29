@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Roots includes
  */
@@ -17,9 +18,6 @@ require_once locate_template('/lib/relative-urls.php');   // Root relative URLs
 require_once locate_template('/lib/widgets.php');         // Sidebars and widgets
 require_once locate_template('/lib/scripts.php');         // Scripts and stylesheets
 require_once locate_template('/lib/custom.php');          // Custom functions
-
-
-
 
 
 
@@ -46,30 +44,10 @@ function theme_front_page_settings () {
 		wp_die('You do not have sufficient permissions to access this page.');
 	}
 
-	$social_icons = array('twitter', 'vimeo', 'flickr', 'facebook', 'skype', 'youtube', 'googleplus');
-
-	$social_icons_options = get_option("mobiletheme_social_icons");
-
 	$color_options = get_option("mobiletheme_color");
 	$color_options = empty($color_options) ? '#bd1f43' : $color_options;
 
 	if (isset($_POST["mobiletheme_settings"])) {
-		$social_icons_options = array();
-
-		for ($i = 0; $i < sizeof($social_icons); $i++) {
-			$field_name = 'social_' . $social_icons[$i];
-
-			if (isset($_POST[$field_name])) {
-				$social_icons_options[$social_icons[$i]] = esc_attr($_POST[$field_name]);
-			}
-			else {
-				$social_icons_options[$social_icons[$i]] = '';
-			}
-
-			update_option("mobiletheme_social_icons", $social_icons_options);
-		}
-
-
 		$color_options = $_POST['color'];
 		update_option("mobiletheme_color", esc_attr($color_options));
 
@@ -83,7 +61,6 @@ function theme_front_page_settings () {
 		));
 
 		$less->compileFile(get_template_directory() . "/assets/less/app.less", get_template_directory() . "/assets/css/main.min.css");
-
 
 		?>
 		<div id="setting-error-settings_updated" class="updated settings-error"><p><strong>Settings saved.</strong></p></div>
@@ -100,26 +77,6 @@ function theme_front_page_settings () {
 			<table class="form-table">
 				<tr>
 					<th scope="row">
-						<label for="num_elements">Social icons</label>
-					</th>
-					<td>
-						<fieldset class="social-icons">
-							<legend class="screen-reader-text"><span>Social settings</span></legend>
-
-							<?php foreach ($social_icons_options as $key => $value) { ?>
-							<label for="social_<?php echo $key ?>_check">
-								<input name="social_<?php echo $key ?>_check" type="checkbox" id="social_<?php echo $key ?>_check" value="1" <?php echo (empty($value) ? '' : 'checked');?> >
-								<input type="text" name="social_<?php echo $key ?>" value="<?php echo $value;?>" <?php echo (empty($value) ? 'disabled' : '');?> />
-								<?php echo $key ?>
-							</label>
-							<br>
-							<?php } ?>
-						</fieldset>
-					</td>
-				</tr>
-
-				<tr>
-					<th scope="row">
 						<label for="num_elements">Theme color</label>
 					</th>
 					<td>
@@ -131,6 +88,7 @@ function theme_front_page_settings () {
 					</td>
 				</tr>
 			</table>
+			
 			<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
 		</form>
 
