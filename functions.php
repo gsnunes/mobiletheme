@@ -60,8 +60,6 @@ function theme_front_page_settings () {
 			"baseColor" => $color_options
 		));
 
-		chmod("/assets/css/main.min.css", 0777);
-
 		$less->compileFile(get_template_directory() . "/assets/less/app.less", get_template_directory() . "/assets/css/main.min.css");
 
 		?>
