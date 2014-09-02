@@ -29,6 +29,15 @@ function roots_widgets_init() {
 		'id'            => 'sidebar-header'
 	));
 
+	register_sidebar(array(
+		'name'          => __('Newsletter', 'roots'),
+		'id'            => 'sidebar-newsletter',
+		'before_widget' => '<div class="widget %1$s %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<label class="title">',
+		'after_title'   => '</label>'
+	));
+
 	// Widgets
 	register_widget('Mobiletheme_Contact_Widget');
 	register_widget('Mobiletheme_Social_Widget');

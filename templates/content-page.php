@@ -99,11 +99,15 @@
 
 	-->
 
+	<!--
 	<form class="form-inline newsletter">
 		<label for="newsletter-email">Signup for our newsletter to get exclusive deals directly to your inbox.</label>
 		<input type="text" class="input-large" placeholder="enter your e-mail address" id="newsletter-email">
 		<button type="submit" class="btn">SUBMIT</button>
 	</form>
+	-->
+
+	<?php dynamic_sidebar('sidebar-newsletter'); ?>
 
 </div>
 
@@ -117,6 +121,17 @@
 
 <script>
 	jQuery(document).ready(function () {
+		jQuery('.widget_mailpress').find('form').addClass('form-inline newsletter');
+		jQuery('.widget_mailpress').find('input[type="submit"]').addClass('btn');
+
+		var title = jQuery('.widget_mailpress').find('label.title');
+		jQuery('.widget_mailpress').find('label.title').remove();
+		jQuery('.widget_mailpress').find('form').prepend(title);
+
+		jQuery('.widget_mailpress').find('br').remove();
+
+
+
 		var oldContent = jQuery('.sidebar-primary .widget'),
 			len = oldContent.length,
 			columnClass = 'span' + (len <= 4 ? (12 / len) : 3),

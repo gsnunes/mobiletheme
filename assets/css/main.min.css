@@ -6353,7 +6353,10 @@ hr {
   margin-bottom: 50px;
 }
 .newsletter label {
-  margin-right: 20px;
+  margin-right: 15px;
+}
+.newsletter input {
+  margin-left: 5px;
 }
 footer {
   color: #fff;
