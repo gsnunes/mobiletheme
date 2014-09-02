@@ -29,14 +29,23 @@ function roots_widgets_init() {
 		'id'            => 'sidebar-header'
 	));
 
-	register_sidebar(array(
-		'name'          => __('Newsletter', 'roots'),
-		'id'            => 'sidebar-newsletter',
-		'before_widget' => '<div class="widget %1$s %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<label class="title">',
-		'after_title'   => '</label>'
-	));
+
+	if ( ! function_exists( 'get_plugins' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+
+	if (is_plugin_active('mailpress/MailPress.php')) {
+		register_sidebar(array(
+			'name'          => __('Newsletter', 'roots'),
+			'id'            => 'sidebar-newsletter',
+			'before_widget' => '<div class="widget %1$s %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<label class="title">',
+			'after_title'   => '</label>'
+		));
+	}
+
+
 
 	// Widgets
 	register_widget('Mobiletheme_Contact_Widget');
@@ -178,49 +187,6 @@ class Mobiletheme_Social_Widget extends WP_Widget {
 
 
 
-function my_action_callback () {
-	$params = array();
-	parse_str($_POST['data'], $params);
-
-	$name = trim($params['name']);
-	$email = $params['email'];
-	$message = $params['message'];
-
-	$subject = get_bloginfo('name') . ' - Contact';
-	$site_owners_email = $params['contactEmail'];
-
-	$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
-
-	if ($name == "") {
-		$error['error'] .= "Please enter your name. <br />";
-	}
-
-	if (!preg_match($regex, $email)) {
-		$error['error'] .= "Please enter a valid email address. <br />";
-	}
-
-	if ($message == "") {
-		$error['error'] .= "Please leave a comment.";
-	}
-
-	if (!$error) {
-		$mail = mail($site_owners_email, $subject, $message,
-		"From: ".$name." <".$email.">rn"
-		."Reply-To: ".$email."rn"
-		."X-Mailer: PHP/" . phpversion());
-
-		$success['success'] = "We've received your email. We'll be in touch with you as soon as possible!";
-		echo json_encode($success);
-	}
-	else {
-		echo json_encode($error);
-	}
-
-	die();
-}
-
-
-
 class Mobiletheme_Contact_Widget extends WP_Widget {
 
 	/**
@@ -306,4 +272,80 @@ class Mobiletheme_Contact_Widget extends WP_Widget {
 		return $instance;
 	}
 
+}
+
+
+
+function my_action_callback () {
+	$params = array();
+	parse_str($_POST['data'], $params);
+
+	$name = trim($params['name']);
+	$email = $params['email'];
+	$message = $params['message'];
+
+	$subject = get_bloginfo('name') . ' - Contact';
+	$site_owners_email = $params['contactEmail'];
+
+	$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+
+	if ($name == "") {
+		$error['error'] .= "Please enter your name. <br />";
+	}
+
+	if (!preg_match($regex, $email)) {
+		$error['error'] .= "Please enter a valid email address. <br />";
+	}
+
+	if ($message == "") {
+		$error['error'] .= "Please leave a comment.";
+	}
+
+	if (!$error) {
+		$mail = mail($site_owners_email, $subject, $message,
+		"From: ".$name." <".$email.">rn"
+		."Reply-To: ".$email."rn"
+		."X-Mailer: PHP/" . phpversion());
+
+		$success['success'] = "We've received your email. We'll be in touch with you as soon as possible!";
+		echo json_encode($success);
+	}
+	else {
+		echo json_encode($error);
+	}
+
+	die();
+}
+
+
+
+add_action('admin_print_styles-widgets.php', 'print_widget_hint_style');
+
+function print_widget_hint_style()
+{
+	?>
+	<style type="text/css">
+		/* Less specific rule for all widgets */
+		div.widgets-sortables[id*=-header] div.widget .widget-title,
+		div.widgets-sortables[id*=-newsletter] div.widget .widget-title,
+		div.widgets-sortables[id*=-primary] div.widget .widget-title,
+		div.widgets-sortables[id*=-footer] div.widget .widget-title
+		{
+			color: red;
+			text-decoration: line-through;
+		}
+
+		/* More specific rule for correct widgets */
+		div.widgets-sortables[id*=-header] div.widget[id*=-social-] .widget-title,
+		div.widgets-sortables[id*=-newsletter] div.widget[id*=_mailpress-] .widget-title,
+		div.widgets-sortables[id*=-primary] div.widget[id*=_text-] .widget-title,
+		div.widgets-sortables[id*=-footer] div.widget[id*=_text-] .widget-title,
+		div.widgets-sortables[id*=-footer] div.widget[id*=-contact-] .widget-title,
+		div.widgets-sortables[id*=-footer] div.widget[id*=-social-] .widget-title
+		{
+			color: green;
+			text-decoration: none;
+		}
+	</style>
+	<?php
 }

@@ -94,15 +94,6 @@ function theme_front_page_settings () {
 
 		<script type="text/javascript">
 			jQuery(document).ready(function () {
-				jQuery('.social-icons').find('input[type="checkbox"]').on('change', function () {
-					if (jQuery(this).is(':checked')) {
-						jQuery('label[for="' + jQuery(this).attr('id') + '"]').find('input[type="text"]').attr('disabled', false);
-					}
-					else {
-						jQuery('label[for="' + jQuery(this).attr('id') + '"]').find('input[type="text"]').attr('disabled', true);
-					}
-				});
-
 				jQuery('#colorpicker').farbtastic('#color');
 			});
 		</script>

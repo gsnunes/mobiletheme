@@ -172,6 +172,9 @@
 			jQuery('.sidebar-primary').append(newContent);
 		});
 
-		jQuery('.sidebar-primary').append('<hr />');
+
+		if (jQuery('.widget_mailpress').length && jQuery('.sidebar-primary .span3').length) {
+			jQuery('.sidebar-primary').append('<hr />');
+		}
 	});
 </script>

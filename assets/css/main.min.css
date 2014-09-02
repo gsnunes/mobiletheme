@@ -6349,9 +6349,6 @@ header h1 {
 hr {
   margin-top: 50px;
 }
-.newsletter {
-  margin-bottom: 50px;
-}
 .newsletter label {
   margin-right: 15px;
 }
@@ -6362,6 +6359,7 @@ footer {
   color: #fff;
   padding-top: 35px;
   padding-bottom: 30px;
+  margin-top: 35px;
 }
 footer a {
   color: #fff;
